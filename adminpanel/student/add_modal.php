@@ -16,6 +16,11 @@
                                             name="is_active" 
                                             value = "no"
                                             required>
+                                            <input type="hidden" 
+                                            class="form-control" 
+                                            name="viewexam" 
+                                            value = "no"
+                                            required>
                                 <div class="form-group col-md-12">
                                     <label for="Student Id">Student ID</label>
                                     <input type="text" 
