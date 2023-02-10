@@ -7,9 +7,9 @@ include '../navbar.php';
 include '../config.php';
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
-<!-- <div class="preloader flex-column justify-content-center align-items-center">
+<div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
-  </div> -->
+  </div>
 <div class="container-scroller">
 <div class="container-scroller">
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -68,7 +68,7 @@ include '../config.php';
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card card-outline card-primary">
                 <div class="card-body table-responsive p-0">
-                  <p class="card-title text-md-center text-xl-left">Attendance Report</p>
+                  <p class="card-title text-md-center text-xl-left"></p>
                   <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                       <table id="example1" class="table table-striped">
                           <thead style="font-size:15px">
