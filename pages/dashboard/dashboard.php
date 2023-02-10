@@ -14,7 +14,9 @@ include '../head.php';
 include '../navbar.php';
 include '../config.php';
 ?>
-
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
+</div>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
