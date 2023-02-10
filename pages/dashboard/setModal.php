@@ -90,6 +90,16 @@
                                             <option value="no">no</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-md-12 text-left">
+                                    <label for="view">view exam </label>
+                                    <select class="form-control"
+                                            name="view" 
+                                            required>
+                                            <option value="<?php echo $erow['is_active'] ?>" hidden><?php echo $erow['is_active'] ?></option>
+                                            <option value="yes">yes</option>
+                                            <option value="no">no</option>
+                                    </select>
+                                </div>
                                 
                             </div>
                                 <div class="modal-footer">

@@ -73,6 +73,7 @@ include '../config.php';
                                   <th class="text-center">Class</th>
                                   <th class="text-center">Gender</th>
                                   <th class="text-center">Active</th>
+                                  <th class="text-center">view exam</th>
                                   <th class="text-right">Action</th>
                                 </tr>
                             </thead>
@@ -97,6 +98,7 @@ include '../config.php';
                                                 <td class="text-center"><?= $row['class']; ?></td>
                                                 <td class="text-center"><?= $row['Gender']; ?></td>
                                                 <td class="text-center"><?= $row['is_active']; ?></td>
+                                                <td class="text-center"><?= $row['view']; ?></td>
                                                 <td class="project-actions text-right">
                                                     <a class="btn btn-info btn-sm" data-toggle="modal" href="#edit<?php echo $row['sid']; ?>">
                                                         <i class="fas fa-pencil-alt">
