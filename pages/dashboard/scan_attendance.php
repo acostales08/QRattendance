@@ -5,7 +5,9 @@
 include '../head.php';
 include '../navbar.php';
 ?>
-
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
+</div>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -34,7 +36,7 @@ include '../navbar.php';
         </div>
       </div>
       <!-- Sidebar Menu -->
-<?php include '../dashboard/sidebar.php'; ?>
+    <?php include 'sidebar.php'; ?>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
