@@ -32,8 +32,9 @@ endif
     </div>
 <!-- /.modal -->
 
-<!-- submit modal -->
-<div class="modal fade" id="submit<?php echo $examId ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<!-- check status -->
+<div class="modal fade" id="view<?php echo $row['ex_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -41,29 +42,22 @@ endif
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <?php
-                if(isset($_REQUEST['submit'])){
-                    print_r($_REQUEST);
-                    }
-                
-                ?>
             </div>
                 <div class="modal-body">
 				<div class="container-fluid">
                     <h1 class="text-center">Are you sure?</h1>
-					<h5><center>you want to submit your answer now? </center></h5> 
+					<h5><center>You want to view your score </center></h5> 
                 </div> 
 				</div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <form action="submitAnswerExe.php" method="POST" class="d-inline">
+                <form action="checkStatus.php" method="POST" class="d-inline">
                     <input type="hidden" name="exmneId" value="<?php echo $exmneId; ?>">
-                    <input type="hidden" name="examId" value="<?php echo $examId; ?>">
-                    <button type="submit" name="submit" value="<?php echo $examId;?>" class="btn btn-primary">Yes, submit now</button>
+                    <input type="hidden" name="examid" value="<?php echo $row['ex_id']; ?>">
+                    <button type="submit" name="submit" value="<?php echo $row['ex_id'];?>" class="btn btn-primary btn-sm">Start now</button>
                 </form>
                 </div>
 				
             </div>
         </div>
     </div>
-<!-- end submit modal -->
+<!-- /.modal -->

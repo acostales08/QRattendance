@@ -123,7 +123,7 @@ include '../config.php';
                                if($insAttempt)
                                {
                                 
-                                header("location:viewtaken.php?id=$exam_id");
+                                header("location:taken.php");
                                 ob_end_flush();
                                 die();
                                }

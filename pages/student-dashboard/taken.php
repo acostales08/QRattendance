@@ -123,6 +123,7 @@ include '../config.php';
                                     <th class="text-center">#</th>
                                     <th class="text-center">Exam Title</th>
                                     <th class="text-center">Description</th>
+                                    <th class="text-center">Score</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -139,12 +140,21 @@ include '../config.php';
                                 <td class="text-center"><?php echo $i++ ?></td>
                                 <td class="text-center"><?php echo $row['ex_title']; ?></td>
                                 <td class="text-center"><?php echo $row['ex_description']; ?></td>
+                                <?php 
+                                  $selScore = mysqli_query($conn, "SELECT * FROM exam_question eq INNER JOIN exam_answers ea ON eq.eqt_id = ea.quest_id AND eq.exam_answer = ea.exans_answer  WHERE ea.axmne_id='$exmneId' AND ea.exam_id=ea.exam_id AND ea.exans_status='new' ");
+                                
+                                    $result1 = mysqli_num_rows($selScore); ?>
+                                    <?php 
+                                          $over  = $row['ex_questlimit_display'];
+                                    ?>
+                                <td class="text-center"><?php echo $result1; ?> / <?php echo $over; ?></td>
                                 <td class="project-actions text-center">
-                                    <a class="btn btn-primary btn-sm" href="viewtaken.php?id=<?php echo $row['ex_id']; ?>">
+                                    <a class="btn btn-primary btn-sm" data-toggle="modal" href="#view<?php echo $row['ex_id']; ?>">
                                       <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
+                                    <?php include('button.php'); ?>
                                 </td>
 
                               </tr>
