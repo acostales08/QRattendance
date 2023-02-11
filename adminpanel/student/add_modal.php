@@ -75,18 +75,17 @@
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <label for="password">Password</label>
-                                    <input type="password" 
+                                    <input type="hidden" 
                                             class="form-control" 
                                             name="password" 
-                                            placeholder="Password" 
+                                            value="student" 
                                             required>
                                 </div> 
                                 
                             </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-primary"> Submit</button>
+                                    <button type="submit" class="btn btn-primary" name="submit"> Submit</button>
                                 </div>
                         </div>       
                 </form>

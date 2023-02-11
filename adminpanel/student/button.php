@@ -101,16 +101,6 @@
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
-
-                                <div class="form-group col-md-12 text-left">
-                                    <label for="password">Password</label>
-                                    <input type="password" 
-                                            class="form-control" 
-                                            id="password" 
-                                            name="password" 
-                                            value="<?php echo $erow['Password'] ?>" 
-                                            required>
-                                </div> 
                                 
                             </div>
                                 <div class="modal-footer">

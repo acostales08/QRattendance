@@ -70,15 +70,6 @@
                                                     <label for="" class="form-group col-md-12 text-left">Address</label>
                                                     <input type="text" class="form-control" name="Address" value="<?php echo $erow['address'] ?>">
                                                 </div>
-                                                <div class="form-group col-md-12">
-                                                    <label for="password">Password</label>
-                                                    <input type="password" 
-                                                            class="form-control" 
-                                                            id="password" 
-                                                            name="password" 
-                                                            value="<?php echo $erow['Password'] ?>"
-                                                            required>
-                                                </div> 
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

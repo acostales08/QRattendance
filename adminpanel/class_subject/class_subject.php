@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 include '../../pages/head.php';
 include '../../pages/navbar.php';
 include '../../pages/config.php';
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
+</div>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../pages/admin/admin.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -19,14 +23,6 @@ include '../../pages/config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../../pages/profile/profile.php" class="d-block"></a>
-        </div>
-      </div>
    
       <div class="user-panel ">
         <div class="info">
@@ -41,10 +37,23 @@ include '../../pages/config.php';
       </aside>
       <div class="main-panel">
         <div class="content-wrapper">
-         <div class="content-header">
-          <div class="container-fluid">
-          <h1 class="m-0"><span style = "color: red; font-size: 35px; width: 2rem;"><b>|</span>List of Class per Subject</b></h1>
-         </div>
+             <!-- Content Header (Page header) -->
+            <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                    <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Class</b></h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">WELCOME</li>
+                        <li class="breadcrumb-item active"><?php echo $_SESSION['username']?></li>
+                      </ol>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+              </div>
+            </div>
+            <!-- /.content-header -->
          <div class="row">
               <div class="col-md-12 grid-margin">
                 <div class="d-flex justify-content-between align-items-center">
@@ -61,6 +70,7 @@ include '../../pages/config.php';
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card card-outline card-primary">
                   <div class="card-body table-responsive p-0">
+                    <?php include('../message.php') ?>
                     <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                         <table id="example1" class="table table-striped" >
                             <thead style="font-size:15px">
@@ -120,8 +130,10 @@ include '../../pages/config.php';
 </div>
 <!-- ./wrapper -->
 <?php
+include '../../pages/footer.php';
     include 'add_modal.php';
     include '../../pages/scripts.php';
+    exit();
 ?>
 </body>
 </html>

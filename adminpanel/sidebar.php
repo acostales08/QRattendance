@@ -75,7 +75,7 @@
               </li>
             </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= $page == 'changepassword.php' ? 'menu-open': ' ' ?>">
               <a href="#" class="nav-link">
                 <i class="fas fa-cogs"></i>
                 <p>
@@ -85,7 +85,7 @@
               </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../../pages/changepassword/changepassword.php" class="nav-link">
+                  <a href="../../adminpanel/admin/changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active': ' ' ?>">
                     <i class="fas fa-user-lock"></i>
                     <p>Chage Password</p>
                   </a>

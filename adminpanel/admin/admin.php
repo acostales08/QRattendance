@@ -1,5 +1,5 @@
 <?php 
-
+ 
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -23,7 +23,7 @@ include '../../pages/config.php';
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../pages/admin/admin.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -32,15 +32,6 @@ include '../../pages/config.php';
     <div class="sidebar">
 
       <!-- Sidebar user panel (optional) -->
-
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block">Isaiah James B. Gonzales</a>
-        </div>
-      </div>
       <div class="user-panel ">
         <div class="info">
           <a class="d-block" style="font-size: 25px; margin: 0 15px;">ADMINISTRATOR</a>
@@ -55,7 +46,17 @@ include '../../pages/config.php';
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-             <h1 class="m-0"><span style = "color: yellow; font-size: 40px; width: 2rem;"><b>|</span>Dashboard</b></h1>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Dashboard</b></h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">WELCOME</li>
+                <li class="breadcrumb-item active"><?php echo $_SESSION['username']?></li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
       </div>
     </div>
     <!-- /.content-header -->
@@ -86,39 +87,74 @@ include '../../pages/config.php';
           <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>2022</h3>
-                <p>School Year</p>
+                <?php
+                $date = date('Y-m-d');
+                $query= "SELECT LOGDATE,count(*) as present from attendance where STATUS = 'PRESENT'AND LOGDATE ='$date'  ";
+                $query_run = mysqli_query($conn, $query);
+                
+                if($query_run->num_rows>0)
+                  {
+                      while($row = mysqli_fetch_assoc($query_run))
+                      {    
+
+                          echo '<h3>' . $row['present'].'</h3>' ;
+                          $present = $row['present'];
+                      
+                      }
+                  }else{
+                  echo '<h3>no record found</h3>';
+                }  
+                ?>
+                <p>Total present</p>
               </div>
               <div class="icon">
-                <i class="ion ion-calendar"></i>
+                <i class="ion ion-ios-people"></i>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>1st<sup style="font-size: 20px"></sup></h3>
+                <?php
+                $date = date('Y-m-d');
+                $query= "SELECT LOGDATE,count(*) as tardy from attendance where STATUS = 'LATE'AND LOGDATE ='$date'  ";
+                $query_run = mysqli_query($conn, $query);
+                
+                if($query_run->num_rows>0)
+                  {
+                      while($row = mysqli_fetch_assoc($query_run))
+                      {    
 
-                <p>Semester</p>
+                          echo '<h3>' . $row['tardy'].'</h3>' ;
+                          $tardy = $row['tardy'];
+                      }
+                  }else{
+                  echo '<h3>no record found</h3>';
+                }
+                
+                ?>
+                <p>Total tardy</p>
               </div>
               <div class="icon">
-                <i class="ion ion-clipboard"></i>
+                <i class="ion ion-ios-people"></i>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
               <div class="inner">
-                <?php
-                
-                $query= "SELECT id_no fROM faculty ORDER BY id_no";
+              <?php
+                $query= "SELECT StudentID fROM student_info ORDER BY StudentID";
                 $query_run = mysqli_query($conn, $query);
                 
                 $rows = mysqli_num_rows($query_run);
+                $student =$rows;
+                 $total = $student - $present -$tardy;;
+                 echo '<h3>'. $total.'</h3>';
                 
-                 echo '<h3>'. $rows.'</h3>';
+                 
                 ?>
-                <p>Faculty</p>
+                <p>Total absent</p>
               </div>
               <div class="icon">
                 <i class="ion ion-ios-people"></i>
@@ -130,13 +166,12 @@ include '../../pages/config.php';
       </div>
     </section>
   </div>
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2020-2021</strong> All rights reserved.
-  </footer>
 </div>
 <!-- ./wrapper -->
 <?php
+include '../../pages/footer.php';
 include '../../pages/scripts.php';
+exit();
 ?>
 </body>
 </html>

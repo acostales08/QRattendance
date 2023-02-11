@@ -34,12 +34,11 @@
                                     <input type="text" class="form-control" name="address" placeholder="Address" >
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="password">Password</label>
-                                    <input type="password" 
+                                    <input type="hidden" 
                                             class="form-control" 
                                             id="password" 
                                             name="password" 
-                                            placeholder="Password" 
+                                            value="faculty" 
                                             required>
                                 </div> 
                         </div>

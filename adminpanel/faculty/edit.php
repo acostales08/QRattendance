@@ -10,7 +10,7 @@ include '../../pages/config.php';
 	$password =$_POST['password'];
 	
 	
-	mysqli_query($conn,"UPDATE faculty set id_no='$id_no', name='$name', email='$email', contact='$contact', address='$address', Password='$password' where id='$id'");
+	mysqli_query($conn,"UPDATE faculty set id_no='$id_no', name='$name', email='$email', contact='$contact', address='$address', where id='$id'");
 	header('location:faculty.php');
 
 ?>
