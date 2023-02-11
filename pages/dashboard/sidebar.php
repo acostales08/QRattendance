@@ -38,7 +38,7 @@
               </a>
             </li>
              <li class="nav-item">
-              <a href="exam.php" class="nav-link <?= $page == 'exam.php' || $page == 'manage_exam.php' ? 'active': ' ' ?>">
+              <a href="exam.php" class="nav-link <?= $page == 'exam.php' || $page == 'manage-exam.php' ? 'active': ' ' ?>">
                 <i class="nav-icon fa fa-archive"></i>
                 <p>
                   Manage Exam
@@ -62,7 +62,7 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= $page == 'changepassword.php' ? 'menu-open': ' ' ?>"">
               <a href="#" class="nav-link">
                 <i class="fas fa-cogs"></i>
                 <p>
@@ -72,7 +72,7 @@
               </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../../pages/changepassword/changepassword.php" class="nav-link">
+                  <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active': ' ' ?>">
                     <i class="fas fa-user-lock"></i>
                     <p>Chage Password</p>
                   </a>

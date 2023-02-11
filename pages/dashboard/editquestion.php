@@ -51,7 +51,7 @@
 
                                 <div class="form-group text-left">
                                     <label>Choice D</label>
-                                    <input type="text" name="choice_D" id="choice_D" class="form-control" value="<?php echo $selQuestionRow['exam_ch3']; ?>" autocomplete="off">
+                                    <input type="text" name="choice_D" id="choice_D" class="form-control" value="<?php echo $selQuestionRow['exam_ch4']; ?>" autocomplete="off">
                                 </div>
 
                                 <div class="form-group text-left">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary swalDefaultSuccess">Update Now</button>
+                            <button type="submit" name="submit" class="btn btn-primary swalDefaultSuccess">Update Now</button>
                         </div>
                     </form>
             </div>

@@ -3,14 +3,14 @@ session_start();
 	include'../config.php';
 	if(isset($_POST['submit'])){
 
-	$examId=$_POST['examId'];
-	$type =$_POST['type'];
-	$question=$_POST['question'];
-	$choice_A=$_POST['choice_A'];
-	$choice_B=$_POST['choice_B'];
-	$choice_C=$_POST['choice_C'];
-	$choice_D=$_POST['choice_D'];
-	$correctAnswer=$_POST['correctAnswer']; 
+	$examId=addslashes($_POST['examId']);
+	$type =addslashes($_POST['type']);
+	$question=addslashes($_POST['question']);
+	$choice_A=addslashes($_POST['choice_A']);
+	$choice_B=addslashes($_POST['choice_B']);
+	$choice_C=addslashes($_POST['choice_C']);
+	$choice_D=addslashes($_POST['choice_D']);
+	$correctAnswer=addslashes($_POST['correctAnswer']); 
 
 	if($type == 'Multiple Choice'){
 		if($correctAnswer != $choice_A AND $correctAnswer != $choice_B AND $correctAnswer != $choice_C AND $correctAnswer != $choice_D){

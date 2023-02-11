@@ -22,7 +22,7 @@ include '../config.php';
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../pages/admin/admin.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -30,63 +30,13 @@ include '../config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block"><?php echo $_SESSION['student'] ?></a>
-        </div>
-      </div>
-   
       <div class="user-panel ">
         <div class="info">
-          <a href="#" class="d-block">Student</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">STUDENT</a>
         </div>
       </div>
       
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-              <a href="student.php" class="nav-link ">
-                <i class="nav-icon fa fa-braille"></i>
-                <p>
-                  Avalable Exam
-                </p>
-              </a>
-            </li>
-             <li class="nav-item"> 
-              <a href="taken.php" class="nav-link active">
-                <i class="nav-icon fa fa-inbox"></i>
-                <p>
-                  Taken Exam
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-cogs"></i>
-                <p>
-                  Setting
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fas fa-user-lock"></i>
-                    <p>Chage Password</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../logout.php" class="nav-link">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <p>Logout</p>
-                  </a>
-                </li>
-            </ul>
-            </li>
-      </nav>
+<?php include 'sidebar.php'; ?>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -96,57 +46,60 @@ include '../config.php';
           $selExam = mysqli_query($conn, "SELECT * FROM exam WHERE ex_id='$examId' ");
           $result=mysqli_fetch_assoc($selExam)
       ?>
-      <div class="main-panel">
-        <div class="content-wrapper">
-         <div class="content-header">
-          <div class="container-fluid">
-             <h1 class="m-0"><span style = "color: red; font-size: 35px; width: 2rem;"><b>|</span>RESULT'S for</b> <?php echo $result['ex_title']; ?> <?php echo $result['ex_description'];?></h1>
-         </div>
+      <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+             <h1 class="m-0"><span style = "color: yellow; font-size: 40px; width: 2rem;"><b>|</span>Dashboard</b></h1>
       </div>
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-        <div class="col-lg-6 col-3">
-        	<div class="main-card mb-6 card card-outline card-primary">
-                <div class="card-body">
+          <div class="col-lg-3 col-12">
+          <div class="main-card mb-6 card card-outline card-primary">
+                <div class="card-body table-responsive p-0">
                 	<h5 class="card-title">Your Answer's</h5>
         			<table class="align-middle mb-0 table table-borderless table-striped table-hover" id="tableList">
-                    <?php 
-                    $exmneId = $_SESSION['sid'];
-                    $i = 1;
-                    	$selQuest = mysqli_query($conn,"SELECT * FROM exam_question eq INNER JOIN exam_answers ea ON eq.eqt_id = ea.quest_id WHERE eq.exam_id='$examId' AND ea.axmne_id='$exmneId' AND ea.exans_status='new' ");
-                    	
-                    	while ($selQuestRow = mysqli_fetch_assoc($selQuest)) { ?>
-                    		<tr>
-                        </br>
+                            <?php 
+                            $exmneId = $_SESSION['sid'];
+                            $i = 1;
+                                $selQuest = mysqli_query($conn,"SELECT * FROM exam_question eq INNER JOIN exam_answers ea ON eq.eqt_id = ea.quest_id WHERE eq.exam_id='$examId' AND ea.axmne_id='$exmneId' AND ea.exans_status='new' ");
+                                
+                                while ($selQuestRow = mysqli_fetch_assoc($selQuest)) { ?>
+                                    <tr>
+                                </br>
 
-                    			<td>
-                    				<b><p><?php echo $i++; ?> .) <?php echo $selQuestRow['exam_question']; ?></p></b>
-                    				<label class="pl-4 text-success">
-                    					Answer : 
-                    					<?php 
-                    						if($selQuestRow['exam_answer'] != $selQuestRow['exans_answer'])
-                    						{ ?>
-                    							<span style="color:red"><?php echo $selQuestRow['exans_answer']; ?></span>
-                    						<?PHP }
-                    						else
-                    						{ ?>
-                    							<span class="text-success"><?php echo $selQuestRow['exans_answer']; ?></span>
-                    						<?php }
-                    					 ?>
-                    				</label>
-                    			</td>
-                    		</tr>
-                    	<?php }
-                     ?>
-	                 </table>
+                                        <td>
+                                            <b><p><?php echo $i++; ?> .) <?php echo $selQuestRow['exam_question']; ?></p></b>
+                                            <label class="pl-4 text-success">
+                                                Answer : 
+                                                <?php 
+                                                    if($selQuestRow['exam_answer'] != $selQuestRow['exans_answer'])
+                                                    { ?>
+                                                        <span style="color:red"><?php echo $selQuestRow['exans_answer']; ?></span>
+                                                    <?PHP }
+                                                    else
+                                                    { ?>
+                                                        <span class="text-success"><?php echo $selQuestRow['exans_answer']; ?></span>
+                                                    <?php }
+                                                ?>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                <?php }
+                            ?>
+	                </table>
                 </div>
             </div>
-        </div>
-
+          </div>
           <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
               <div class="inner">
-              <h3>Score</h3>
+              <h5>Score</h5>
               <?php 
                   $selScore = mysqli_query($conn, "SELECT * FROM exam_question eq INNER JOIN exam_answers ea ON eq.eqt_id = ea.quest_id AND eq.exam_answer = ea.exans_answer  WHERE ea.axmne_id='$exmneId' AND ea.exam_id='$examId' AND ea.exans_status='new' ");
                   ?>
@@ -168,7 +121,7 @@ include '../config.php';
           <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
               <div class="inner">
-              <h3>Percentage</h3>
+              <h5>Percentage</h5>
               <?php 
                   $selScore = mysqli_query($conn,"SELECT * FROM exam_question eq INNER JOIN exam_answers ea ON eq.eqt_id = ea.quest_id AND eq.exam_answer = ea.exans_answer  WHERE ea.axmne_id='$exmneId' AND ea.exam_id='$examId' AND ea.exans_status='new' ");
                     ?>
@@ -188,16 +141,21 @@ include '../config.php';
               </div>
             </div>
           </div>
+
         </div>
       </div>
-    </div>
-    </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2020-2021</strong> All rights reserved.
+  </footer>
 </div>
 
 <!-- ./wrapper -->
 <?php
-
+include '../footer.php';
 include '../scripts.php';
+exit();
 ?>
 </body>
 </html>

@@ -14,7 +14,7 @@ include '../config.php';
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -22,17 +22,9 @@ include '../config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block"><?php echo $_SESSION['faculty']?></a>
-        </div>
-      </div>
       <div class="user-panel ">
         <div class="info">
-          <a class="d-block" style="font-size: 25px; margin: 0 15px;">TEACHER</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">TEACHER</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -40,13 +32,26 @@ include '../config.php';
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-      </aside>
+    </aside>
       <div class="main-panel">
         <div class="content-wrapper">
-         <div class="content-header">
-          <div class="container-fluid">
-          <h1 class="m-0"><span style = "color: red; font-size: 35px; width: 2rem;"><b>|</span>Student </b>per class</h1>
-         </div>
+             <!-- Content Header (Page header) -->
+            <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                    <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Class</b></h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">WELCOME</li>
+                        <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
+                      </ol>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+              </div>
+            </div>
+            <!-- /.content-header -->
          <div class="row">
               <div class="col-md-12 grid-margin">
                 <div class="d-flex justify-content-between align-items-center">
@@ -72,7 +77,9 @@ include '../config.php';
                                   <th class="text-center">Class</th>
                                   <th class="text-center">Gender</th>
                                   <th class="text-center">Active</th>
+                                  <th class="text-right">view</th>
                                   <th class="text-right">Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,6 +103,7 @@ include '../config.php';
                                                 <td class="text-center"><?= $row['class']; ?></td>
                                                 <td class="text-center"><?= $row['Gender']; ?></td>
                                                 <td class="text-center"><?= $row['is_active']; ?></td>
+                                                <td class="text-center"><?= $row['view']; ?></td>
                                                 <td class="project-actions text-right">
                                                     <a class="btn btn-info btn-sm" data-toggle="modal" href="#edit<?php echo $row['sid']; ?>">
                                                         <i class="fas fa-pencil-alt">
@@ -121,9 +129,10 @@ include '../config.php';
 </div>
 <!-- ./wrapper -->
 <?php
-   
+   include '../footer.php';
    include 'SelectSection.php';
    include '../scripts.php';
+   exit();
    ?>
 </body>
 </html>

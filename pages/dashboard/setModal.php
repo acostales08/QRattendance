@@ -95,7 +95,7 @@
                                     <select class="form-control"
                                             name="view" 
                                             required>
-                                            <option value="<?php echo $erow['is_active'] ?>" hidden><?php echo $erow['is_active'] ?></option>
+                                            <option value="<?php echo $erow['view'] ?>" hidden><?php echo $erow['view'] ?></option>
                                             <option value="yes">yes</option>
                                             <option value="no">no</option>
                                     </select>

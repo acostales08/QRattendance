@@ -50,14 +50,6 @@ if(isset($_POST['submit'])){
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-12 text-left">
-                                <label for="student id">Student ID </label>
-                                <input type="text" 
-                                        class="form-control" 
-                                        name="student_id" 
-                                        placeholder="student ID"
-                                        >
-                            </div>
                             </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

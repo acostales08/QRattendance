@@ -9,12 +9,12 @@ include '../config.php';
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
-  </div>
-<div class="container-scroller">
-<div class="container-scroller">
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+</div>
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../pages/admin/admin.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -22,32 +22,35 @@ include '../config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block"><?php echo $_SESSION['faculty']?></a>
-        </div>
-      </div>
       <div class="user-panel ">
         <div class="info">
-          <a class="d-block" style="font-size: 25px; margin: 0 15px;">TEACHER</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">TEACHER</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
-      <?php include 'sidebar.php'; ?>
+    <?php include 'sidebar.php'; ?>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
-      <div class="main-panel">
         <div class="content-wrapper">
-        <div class="content-header">
-            <div class="container-fluid">
-             <h1 class="m-0"><span style = "color: red; font-size: 35px; width: 2rem;"><b>|</span>Attendance</b> Report</h1>
+        <!-- Content Header (Page header) -->
+            <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                    <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Attendance Report</b></h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">WELCOME</li>
+                        <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
+                      </ol>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+              </div>
             </div>
-          </div>
+            <!-- /.content-header -->
           <div class="row">
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
@@ -85,7 +88,7 @@ include '../config.php';
                         <?php
                          
                            $i = 1;
-                           $sql ="SELECT * FROM attendance inner JOIN student_info ON attendance.StudentID=student_info.StudentID WHERE class_id = $classID";
+                           $sql ="SELECT * FROM attendance inner JOIN student_info ON attendance.StudentID=student_info.StudentID WHERE class_id = $classID order by attendance.LOGDATE desc";
                            $query = $conn->query($sql);
                            while ($row = $query->fetch_assoc()){
                         ?>
@@ -110,8 +113,10 @@ include '../config.php';
           </div>
         </div>
   <?php
+  include '../footer.php';
   include 'classatt.php';
     include '../scripts.php';
+    exit();
     ?>
 </body>
 </html>

@@ -21,12 +21,15 @@ include '../config.php';
 
 
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
+</div>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../pages/admin/admin.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -34,74 +37,33 @@ include '../config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block"><?php echo $_SESSION['student'] ?></a>
-        </div>
-      </div>
-   
       <div class="user-panel ">
         <div class="info">
-          <a href="#" class="d-block">Student</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">STUDENT</a>
         </div>
       </div>
-      
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-              <a href="student.php" class="nav-link ">
-                <i class="nav-icon fa fa-braille"></i>
-                <p>
-                  Avalable Exam
-                </p>
-              </a>
-            </li>
-             <li class="nav-item"> 
-              <a href="taken.php" class="nav-link active">
-                <i class="nav-icon fa fa-inbox"></i>
-                <p>
-                  Taken Exam
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-cogs"></i>
-                <p>
-                  Setting
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fas fa-user-lock"></i>
-                    <p>Chage Password</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../logout.php" class="nav-link">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <p>Logout</p>
-                  </a>
-                </li>
-            </ul>
-            </li>
-      </nav>
+<?php include 'sidebar.php'; ?>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
       </aside>
       <div class="main-panel">
         <div class="content-wrapper">
-         <div class="content-header">
+        <div class="content-header">
           <div class="container-fluid">
-             <h1 class="m-0"><span style = "color: red; font-size: 35px; width: 2rem;"><b>|</span>All Exam's </b></h1>
-         </div>
-      </div>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>All Exam's</b></h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">WELCOME</li>
+                    <li class="breadcrumb-item active"><?php echo $_SESSION['student']?></li>
+                  </ol>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+          </div>
+        </div>
         <?php
           $exmneId = $_SESSION['sid'];
           endif;
@@ -114,7 +76,7 @@ include '../config.php';
           <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card card-outline card-primary">
-                  <div class="card-body">
+                  <div class="card-body table-responsive p-0">
                   <?php include('../message.php'); ?>
                     <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                         <table id="example1" class="table table-striped" >
@@ -177,8 +139,9 @@ include '../config.php';
 </div>
 <!-- ./wrapper -->
 <?php
-
+include '../footer.php';
 include '../scripts.php';
+exit();
 ?>
 </body>
 </html>

@@ -14,7 +14,7 @@ include '../navbar.php';
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../pages/admin/admin.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -22,17 +22,9 @@ include '../navbar.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block"><?php echo $_SESSION['faculty']?></a>
-        </div>
-      </div>
       <div class="user-panel ">
         <div class="info">
-          <a class="d-block" style="font-size: 25px; margin: 0 15px;">TEACHER</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">TEACHER</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -43,8 +35,23 @@ include '../navbar.php';
   </aside>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-
-    <!-- /.content-header -->
+             <!-- Content Header (Page header) -->
+             <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                    <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Class</b></h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">WELCOME</li>
+                        <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
+                      </ol>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+              </div>
+            </div>
+            <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
     <div class="row">
@@ -93,7 +100,7 @@ include '../navbar.php';
                 
           </div>
             <div class="col-md-8">
-              <div class="card card-outline card-primary ">
+              <div class="card card-outline card-primary">
               <form action="CheckInOut.php" 
                       method="post" 
                       class="form-horizontal" 
@@ -108,7 +115,9 @@ include '../navbar.php';
                             autofocus>
                 </form></br>
 
-				        <div style="border-radius: 5px;padding:10px;background:#fff;" class="table-responsive p-0" id="divvideo">
+				        <div style="border-radius: 5px;padding:10px;background:#fff;" id="divvideo" class="table-responsive p-0">
+                <div class="card-body table-responsive p-0">
+                    <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                   <table id="example1" class="table table-striped ">
                    <thead style="font-size:15px">
                         <tr>
@@ -163,21 +172,14 @@ include '../navbar.php';
                 </div>
 				
                 </div>
+                </div>
+				
+        </div>
 				
             </div>
 
     </section>
   </div>
-
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2020-2021</strong> All rights reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
 <script>
 	function Export(){
@@ -225,7 +227,9 @@ include '../navbar.php';
         </script>
 <!-- ./wrapper -->
 <?php
+include '../footer.php';
 include '../scripts.php';
+exit();
 ?>
 </body>
 </html>

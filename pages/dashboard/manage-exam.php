@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 include '../head.php';
 include '../navbar.php';
 require '../config.php';
@@ -13,7 +14,7 @@ require '../config.php';
 <div class="container-scroller">
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -21,17 +22,9 @@ require '../config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block">Isaiah James B. Gonzales</a>
-        </div>
-      </div>
       <div class="user-panel ">
         <div class="info">
-          <a class="d-block" style="font-size: 25px; margin: 0 15px;">TEACHER</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">TEACHER</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -74,6 +67,7 @@ require '../config.php';
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card card-outline card-primary">
                   <div class="card-body">
+                  <?php include('../message.php'); ?>
                     <p class="card-title text-md-center text-xl-left">Exam's Question</p>
           
                     <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
@@ -224,6 +218,7 @@ require '../config.php';
     <?php
     include 'add_modal.php';
     include '../scripts.php';
+    exit();
     ?>
 </body>
 </html>

@@ -14,16 +14,17 @@ include '../head.php';
 include '../navbar.php';
 include '../config.php';
 ?>
+
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
 </div>
-<body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../pages/admin/admin.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -31,17 +32,9 @@ include '../config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block"><?php echo $_SESSION['faculty']?></a>
-        </div>
-      </div>
       <div class="user-panel ">
         <div class="info">
-          <a class="d-block" style="font-size: 25px; margin: 0 15px;">TEACHER</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">TEACHER</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -52,67 +45,70 @@ include '../config.php';
   </aside>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <h1 class="m-0"><span style = "color: purple;" ><h1><b>| Dashboard</b></span></h1>
-      </div>
-    </div>
-    <!-- /.content-header -->
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                <h2 style="color: purple;"><b><?php date_default_timezone_set('Asia/Manila'); echo date("l") ." ". date('Y-m-d') ?></b></br></h2>
+                <h2 style="color: purple;"><b><?php echo date("g:i A") ?></b></br></h2>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">WELCOME</li>
+                    <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
+                  </ol>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+          </div>
+        </div>
+        <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-              <div class="inner">
-              <?php
-                $id = $_SESSION['id'];
-                $class = mysqli_query($conn, "SELECT * FROM class_subject cs
-                INNER JOIN subjects s on s.id = cs.subject_id
-                INNER JOIN faculty f on f.id = cs.faculty_id
-                WHERE cs.subject_id AND cs.faculty_id = '$id'");
-                $row = mysqli_num_rows($class);
-                
-                  echo '<h3>'. $row .'</h3>'
-               
-                ?>
-                <p>subject</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-calendar"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-success">
+            <div class="small-box bg-danger">
               <div class="inner">
                 <?php
-                $id = $_SESSION['id'];
-                $class = mysqli_query($conn, "SELECT * FROM class_subject cs
-                INNER JOIN class c on c.id = cs.class_id
-                INNER JOIN faculty f on f.id = cs.faculty_id
-                WHERE cs.faculty_id = '$id'");
-                $row = mysqli_num_rows($class);
                 
-                  echo '<h3>'. $row .'<sup style="font-size: 20px"></sup></h3>'
-               
+                $query= "SELECT StudentID fROM student_info ORDER BY StudentID";
+                $query_run = mysqli_query($conn, $query);
+                
+                $rows = mysqli_num_rows($query_run);
+                
+                 echo '<h3>'. $rows.'</h3>';
                 ?>
-                
-
-                <p>class</p>
+                <p>Enrolled Students</p>
               </div>
               <div class="icon">
-                <i class="ion ion-clipboard"></i>
+                <i class="ion ion-android-person-add"></i>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
+            <div class="small-box bg-info">
               <div class="inner">
-                <h3>60</h3>
+                <?php
+                $date = date('Y-m-d');
+                $query= "SELECT LOGDATE,count(*) as present from attendance where STATUS = 'PRESENT'AND LOGDATE ='$date'  ";
+                $query_run = mysqli_query($conn, $query);
+                
+                if($query_run->num_rows>0)
+                  {
+                      while($row = mysqli_fetch_assoc($query_run))
+                      {    
 
-                <p>Total Student</p>
+                          echo '<h3>' . $row['present'].'</h3>' ;
+                          $present = $row['present'];
+                      
+                      }
+                  }else{
+                  echo '<h3>no record found</h3>';
+                }  
+                ?>
+                <p>Total present</p>
               </div>
               <div class="icon">
                 <i class="ion ion-ios-people"></i>
@@ -120,35 +116,66 @@ include '../config.php';
             </div>
           </div>
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
+            <div class="small-box bg-success">
               <div class="inner">
-                <h3>oct. 10 2022</h3>
+                <?php
+                $date = date('Y-m-d');
+                $query= "SELECT LOGDATE,count(*) as tardy from attendance where STATUS = 'LATE'AND LOGDATE ='$date'  ";
+                $query_run = mysqli_query($conn, $query);
+                
+                if($query_run->num_rows>0)
+                  {
+                      while($row = mysqli_fetch_assoc($query_run))
+                      {    
 
-                <p>date</p>
+                          echo '<h3>' . $row['tardy'].'</h3>' ;
+                          $tardy = $row['tardy'];
+                      }
+                  }else{
+                  echo '<h3>no record found</h3>';
+                }
+                
+                ?>
+                <p>Total tardy</p>
               </div>
               <div class="icon">
-                <i class="ion ion-android-person-add"></i>
+                <i class="ion ion-ios-people"></i>
               </div>
             </div>
           </div>
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+              <div class="inner">
+              <?php
+                $query= "SELECT StudentID fROM student_info ORDER BY StudentID";
+                $query_run = mysqli_query($conn, $query);
+                
+                $rows = mysqli_num_rows($query_run);
+                $student =$rows;
+                 $total = $student - $present -$tardy;;
+                 echo '<h3>'. $total.'</h3>';
+                
+                 
+                ?>
+                <p>Total absent</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-ios-people"></i>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   </div>
-
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2020-2021</strong> All rights reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 <?php
+include '../footer.php';
 include '../scripts.php';
+exit();
 ?>
 </body>
 </html>

@@ -3,14 +3,14 @@
 	
 	$id=$_GET['id'];
 	
-    $examId=$_POST['examId'];
-	$type =$_POST['type'];
-	$question=$_POST['question'];
-	$choice_A=$_POST['choice_A'];
-	$choice_B=$_POST['choice_B'];
-	$choice_C=$_POST['choice_C'];
-	$choice_D=$_POST['choice_D'];
-	$correctAnswer=$_POST['correctAnswer'];
+    $examId=addslashes($_POST['examId']);
+	$type =addslashes($_POST['type']);
+	$question=addslashes($_POST['question']);
+	$choice_A=addslashes($_POST['choice_A']);
+	$choice_B=addslashes($_POST['choice_B']);
+	$choice_C=addslashes($_POST['choice_C']);
+	$choice_D=addslashes($_POST['choice_D']);
+	$correctAnswer=addslashes($_POST['correctAnswer']); 
 	
 	
 	mysqli_query($conn,"UPDATE exam_question set eqt_id='$id', exam_question='$question', exam_ch1='$choice_A',

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 include '../head.php';
 include '../navbar.php';
 include '../config.php';
@@ -9,10 +10,11 @@ include '../config.php';
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
 </div>
-<div class="container-scroller">
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.php" class="brand-link">
+    <a class="brand-link">
       <img src="../../dist/img/logo.png" alt="RCI Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Richwell Colleges Inc.</span>
     </a>
@@ -20,37 +22,40 @@ include '../config.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="../../pages/profile/profile.php" class="d-block">Isaiah James B. Gonzales</a>
-        </div>
-      </div>
       <div class="user-panel ">
         <div class="info">
-          <a class="d-block" style="font-size: 25px; margin: 0 15px;">TEACHER</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">TEACHER</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
-      <?php include '../dashboard/sidebar.php'; ?>
+    <?php include 'sidebar.php'; ?>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
   <div class="main-panel">
       <div class="content-wrapper">
-        <div class="content-header">
-          <div class="container-fluid">
-              <h1 class="m-0"><span style = "color: red; font-size: 35px; width: 2rem;"><b>|</span>Exam Result </b></h1>
-          </div>
-       </div>
-
-                <div class="row">
+        <!-- Content Header (Page header) -->
+            <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                    <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Exam Result</b></h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">WELCOME</li>
+                        <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
+                      </ol>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+              </div>
+            </div>
+            <!-- /.content-header -->
+            <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card card-outline card-primary">
-                  <div class="card-body">
+                  <div class="card-body table-responsive p-0">
                     <p class="card-title text-md-center text-xl-left">Exam</p>
                     <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
 
@@ -117,14 +122,7 @@ include '../config.php';
                                         </tr>
                                     <?php }
                                 }
-                                else
-                                { ?>
-                                    <tr>
-                                      <td colspan="2">
-                                        <h3 class="p-3">No Course Found</h3>
-                                      </td>
-                                    </tr>
-                                <?php }
+
                                ?>
                             </tbody>
                         </table>
@@ -132,8 +130,6 @@ include '../config.php';
 
                   </div>
                 </div>
-              </div>
-            </div>
           <!-- partial -->
         </div>
       <!-- main-panel ends -->
@@ -142,8 +138,9 @@ include '../config.php';
   </div>
   
     <?php
-   
+   include '../footer.php';
     include '../scripts.php';
+    exit();
     ?>
 </body>
 </html>
