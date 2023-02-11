@@ -135,7 +135,7 @@ include '../config.php';
                                       value=""
                                       placeholder="Answer here"
                                       autocomplete="off"
-                                      required >
+                                       >
                             </div>
                           </td>
                         </tr>
@@ -146,7 +146,7 @@ include '../config.php';
                             <p><b><?php echo $i++ ; ?> .) <?php echo $selQuestRow['exam_question']; ?></b></p>
                             <div class="col-md-4 float-left">
                               <div class="form-group pl-4 ">
-                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch1']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck" required >
+                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch1']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck"  >
                                
                                 <label class="form-check-label" for="invalidCheck">
                                     <?php echo $selQuestRow['exam_ch1']; ?>
@@ -154,7 +154,7 @@ include '../config.php';
                               </div>  
 
                               <div class="form-group pl-4">
-                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch2']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck" required >
+                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch2']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck"  >
                                
                                 <label class="form-check-label" for="invalidCheck">
                                     <?php echo $selQuestRow['exam_ch2']; ?>
@@ -163,7 +163,7 @@ include '../config.php';
                             </div>
                             <div class="col-md-8 float-left">
                              <div class="form-group pl-4">
-                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch3']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck" required >
+                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch3']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck"  >
                                
                                 <label class="form-check-label" for="invalidCheck">
                                     <?php echo $selQuestRow['exam_ch3']; ?>
@@ -171,7 +171,7 @@ include '../config.php';
                               </div>  
 
                               <div class="form-group pl-4">
-                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch4']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck" required >
+                                <input name="answer[<?php echo $questId; ?>][correct]" value="<?php echo $selQuestRow['exam_ch4']; ?>" class="form-check-input" type="radio" value="" id="invalidCheck"  >
                                
                                 <label class="form-check-label" for="invalidCheck">
                                     <?php echo $selQuestRow['exam_ch4']; ?>
