@@ -54,7 +54,7 @@ include '../config.php';
       <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-            <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Student</b></h1>
+            <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Available Exam's</b></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
