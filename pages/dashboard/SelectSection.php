@@ -1,8 +1,12 @@
 <?php
 if(isset($_POST['submit'])){
     $class = $_POST['class'];
+    $status = $_POST['is_active'];
+    $view = $_POST['view'];
 
+    $query =mysqli_query($conn, "UPDATE student_info SET is_active='$status', view='$view' WHERE class_id='$classID'");
     header("location:class.php?id=$class");
+    exit();
 }
 
 ?>
@@ -34,7 +38,7 @@ if(isset($_POST['submit'])){
                                         required>                               
                                 <div class="form-group col-md-12">
                                     <label for="" class="control-label">Class</label>
-                                    <select name="class" id="" class="custom-select select2">
+                                    <select name="class" id="" class="custom-select select2" required>
                                         <option value="" disabled selected hidden>please select</option>
                                         <?php
                                         $class = mysqli_query($conn, "SELECT c.*,concat(co.course,' ',c.level,'-',c.section) as `class` FROM `class` c inner join courses co on co.id = c.course_id order by concat(co.course,' ',c.level,'-',c.section) asc");
@@ -42,6 +46,30 @@ if(isset($_POST['submit'])){
                                         ?>
                                         <option value="<?php echo $row['id'] ?>" <?php echo isset($class_id) && $class_id == $row['id'] ? 'selected' : '' ?>><?php echo $row['class'] ?></option>
                                         <?php endwhile; ?>
+                                    </select>
+                                </div>
+                                <?php
+                                $s=mysqli_query($conn, "SELECT * FROM student_info");
+                                $srow = mysqli_fetch_assoc($s);
+                                ?>
+                                <div class="form-group col-md-12">
+                                    <label for="is_active">Allow student to login </label>
+                                    <select class="form-control"
+                                            name="is_active" 
+                                            >
+                                            <option value="<?php echo $srow['is_active'] ?>" hidden><?php echo $srow['is_active'] ?></option>
+                                            <option value="yes">yes</option>
+                                            <option value="no">no</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="view">Allow student to view exam result </label>
+                                    <select class="form-control"
+                                            name="view" 
+                                            >
+                                            <option value="<?php echo $srow['view'] ?>" hidden><?php echo $srow['view'] ?></option>
+                                            <option value="yes">yes</option>
+                                            <option value="no">no</option>
                                     </select>
                                 </div>
                                 <div class="modal-footer">
