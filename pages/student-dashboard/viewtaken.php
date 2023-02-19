@@ -59,11 +59,11 @@ include '../config.php';
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-12">
+          <div class="col-lg-6 col-12">
           <div class="main-card mb-6 card card-outline card-primary">
-                <div class="card-body table-responsive p-0">
+                <div class="card-body p-5 table-responsive p-0">
                 	<h5 class="card-title">Your Answer's</h5>
-        			<table class="align-middle mb-0 table table-borderless table-striped table-hover" id="tableList">
+
                             <?php 
                             $exmneId = $_SESSION['sid'];
                             $i = 1;
@@ -92,7 +92,7 @@ include '../config.php';
                                     </tr>
                                 <?php }
                             ?>
-	                </table>
+
                 </div>
             </div>
           </div>
