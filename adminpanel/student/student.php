@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
- 
 <?php
  session_start();
 include '../../pages/head.php';
 include '../../pages/navbar.php';
 include '../../pages/config.php';
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
