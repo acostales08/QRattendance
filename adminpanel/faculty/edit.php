@@ -12,5 +12,6 @@ include '../../pages/config.php';
 	
 	mysqli_query($conn,"UPDATE faculty set id_no='$id_no', name='$name', email='$email', contact='$contact', address='$address', where id='$id'");
 	header('location:faculty.php');
+	exit(0);
 
 ?>

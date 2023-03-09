@@ -24,7 +24,7 @@ include '../../pages/config.php';
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel ">
         <div class="info">
-          <a class="d-block" style="font-size: 25px; margin: 0 50px;">TEACHER</a>
+          <a class="d-block" style="font-size: 25px; margin: 0 50px;">ADMINISTRATOR</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -62,15 +62,15 @@ include '../../pages/config.php';
                 <div class="card-body">
                 <div class="form-group">
                     <label for="oldpassword">Old password</label>
-                    <input type="password" name="old_password" class="form-control"  placeholder="Enter old password">
+                    <input type="password" name="old_password" class="form-control"  placeholder="Enter old password" required>
                   </div>
                   <div class="form-group">
                     <label for="newpassword">New password</label>
-                    <input type="password" name="new_password" class="form-control"  placeholder="Enter new password">
+                    <input type="password" name="new_password" class="form-control"  placeholder="Enter new password" required>
                   </div>
                   <div class="form-group">
                     <label for="repeatpassword">Repeat Password</label>
-                    <input type="password" name="repaet_password" class="form-control" id="exampleInputPassword1" placeholder="Repeat password">
+                    <input type="password" name="repaet_password" class="form-control" id="exampleInputPassword1" placeholder="Repeat password" required>
                   </div>
                 </div>
                 <!-- /.card-body -->

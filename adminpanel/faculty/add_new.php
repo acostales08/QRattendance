@@ -21,6 +21,7 @@ include '../../pages/config.php';
 			
 	mysqli_query($conn,"insert into faculty (id_no, name, email, contact, address, Password) values ('$id_no', '$name','$email', '$contact','$address', '$password')");
 	header('location:faculty.php');
+	exit(0);
 	}
 
 

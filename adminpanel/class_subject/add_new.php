@@ -16,5 +16,6 @@ include '../../pages/config.php';
 	}else{
 	mysqli_query($conn,"insert into class_subject (class_id, faculty_id, subject_id) values ('$class_id','$faculty_id', '$subject_id')");
 	header('location:class_subject.php');
+	exit(0);
 	}
 ?>

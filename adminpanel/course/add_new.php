@@ -15,6 +15,7 @@ include '../../pages/config.php';
 
 			mysqli_query($conn,"insert into courses (course, description) values ('$cName', '$descrip')");
 	header('location:course.php');
+	exit(0);
 	}
 
 

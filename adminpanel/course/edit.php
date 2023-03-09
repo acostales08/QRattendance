@@ -8,5 +8,6 @@
 	
 	mysqli_query($conn,"update courses set id='$id', course='$cName', description='$descrip' where id='$id'");
 	header('location:course.php');
+	exit(0);
 
 ?>

@@ -25,6 +25,7 @@ if(isset($_POST['submit'])){
 	mysqli_query($conn,"insert into student_info (StudentID, FullName, Gender, Email, class_id, Password, is_active, view)
 	 values ('$sid', '$fName','$gender', '$email','$class', '$pass', '$is_active', '$view')");
 	header('location:student.php');
+	exit(0);
 
 	}
 

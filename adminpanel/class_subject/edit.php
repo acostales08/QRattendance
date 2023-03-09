@@ -9,5 +9,6 @@ include '../../pages/config.php';
 	
 	mysqli_query($conn,"update class_subject set id='$id', class_id='$class_id', faculty_id='$faculty_id', subject_id='$subject_id' where id='$id'");
 	header('location:class_subject.php');
+	exit(0);
 
 ?>

@@ -69,13 +69,17 @@ include "../../pages/head.php";
                 </div>
               </div>
             </div>
+            <div>
+            <a href="password_request.php">forgot password</a>
+          </div></br>
               <!-- /.col -->
-              <div>
+              <div">
                 <button type="submit" 
                         name="submit" 
                         class="btn btn-primary">Sign In</button>
               </div>
           </form>
+
     </div>
     <!-- /.card-body -->
   </div>

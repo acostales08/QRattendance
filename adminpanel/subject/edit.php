@@ -8,5 +8,6 @@
 	
 	mysqli_query($conn,"update subjects set id='$id', subject='$sName', description='$descrip' where id='$id'");
 	header('location:subject.php');
+	exit(0);
 
 ?>

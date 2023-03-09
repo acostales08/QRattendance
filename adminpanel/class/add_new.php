@@ -17,6 +17,7 @@ include '../../pages/config.php';
 	
 	mysqli_query($conn,"insert into class (course_id, level, section) values ('$course','$level', '$section')");
 	header('location:class.php');
+	exit(0);
 	}
 
 ?>
