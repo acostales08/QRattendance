@@ -9,10 +9,6 @@
                 </button>
             </div>
                 <div class="modal-body">
-                <?php
-					$del=mysqli_query($conn, "SELECT * FROM exam JOIN courses on exam.cou_id = courses.id where ex_id='".$row['ex_id']."'");
-					$drow=mysqli_fetch_array($del);
-				?>
 				<div class="container-fluid">
 					<h5><center>Are you sure to delete from the list?</center></h5> 
                 </div> 
@@ -46,19 +42,18 @@
                 <form role="form" action="edit.php?id=<?php echo $row['ex_id']; ?>" method="POST" id="form"> 
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-md-12 text-left">
-                                    <label for="course">select course </label>
-                                    <select name="course_id" id="course_id" class="custom-select select2">
-                                    <option value="<?php echo $row['cou_id']; ?>"  hidden><?php echo $row['course']; ?></option>
-                                        <?php 
-                                        $course = mysqli_query($conn,"SELECT * FROM courses order by course asc");
-                                        while($row=mysqli_fetch_assoc($course)):
+                        <div class="form-group col-md-12 text-left">
+                                    <label for="" class="control-label">Class</label>
+                                    <select name="class_id" id="" class="custom-select select2">
+                                    <option value="<?php echo $row['class_id']?>" hidden><?php echo $row['class'] ?></option>
+                                        <?php
+                                        $class = $conn->query("SELECT c.*,concat(co.course,' ',c.level,'-',c.section) as `class` FROM `class` c inner join courses co on co.id = c.course_id order by concat(co.course,' ',c.level,'-',c.section) asc");
+                                        while($row=$class->fetch_assoc()):
                                         ?>
-                                        <option value="<?php echo $row['id'] ?>"><?php echo $row['course'] ?></option>
-                                    
-                                    <?php endwhile; ?>
+                                        <option value="<?php echo $row['id'] ?>" <?php echo isset($class_id) && $class_id == $row['id'] ? 'selected' : '' ?>><?php echo $row['class'] ?></option>
+                                        <?php endwhile; ?>
                                     </select>
-                            </div>
+                                </div>
                             <div class="form-group col-md-12 text-left">
                                 <label>Exam Time limit</label>
                                     <select class="form-control" name="examLimit" required="">

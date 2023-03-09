@@ -7,9 +7,9 @@ include '../navbar.php';
 include '../config.php';
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="preloader flex-column justify-content-center align-items-center">
+<!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
-</div>
+</div> -->
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -72,8 +72,9 @@ include '../config.php';
                     <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                     <?php
 
-                        $sql = "SELECT * FROM exam JOIN courses on exam.cou_id = courses.id";
-                        $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
+                        $sql =mysqli_query($conn, "SELECT e.*,concat(co.course,' ',c.level,'-',c.section) as `class` FROM exam e 
+                        inner join `class` c on c.id = e.class_id 
+                        inner join courses co on co.id = c.course_id ");
                         ?>
 
                         <table id="example1" class="table table-striped" >
@@ -91,16 +92,16 @@ include '../config.php';
                             <tbody>
                             <?php
                             $i = 1;
-                                while($row = mysqli_fetch_assoc($result)){
+                                while($row = mysqli_fetch_assoc($sql)){
                               ?>
                                             <tr>
                                                 <td class="text-center"><?php echo $i++?></td>
                                                 <td class="text-center"><?= $row['ex_title']; ?></td>
-                                                <td class="text-center"><?= $row['course']; ?></td>
+                                                <td class="text-center"><?= $row['class']; ?></td>
                                                 <td class="text-center"><?= $row['ex_description']; ?></td>
                                                 <td class="text-center"><?= $row['ex_time_limit']; ?></td>
                                                 <td class="text-center"><?= $row['ex_questlimit_display']; ?></td>
-                                                <td class="project-actions text-right">
+                                                <td class="project-actions text-center">
                                                     <a class="btn btn-primary btn-sm" href="manage-exam.php?id=<?php echo $row['ex_id']; ?>">
                                                         <i class="fas fa-folder">
                                                         </i>

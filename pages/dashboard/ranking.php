@@ -1,7 +1,7 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
 include '../head.php';
 include '../navbar.php';
 include '../config.php';
@@ -56,11 +56,12 @@ include '../config.php';
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card card-outline card-primary">
                   <div class="card-body table-responsive p-0">
-                    <p class="card-title text-md-center text-xl-left">Exam</p>
                     <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                     <?php
 
-                        $sql = "SELECT * FROM exam JOIN courses on exam.cou_id = courses.id";
+                        $sql = "SELECT e.*,concat(co.course,' ',c.level,'-',c.section) as `class` FROM exam e 
+                        inner join `class` c on c.id = e.class_id 
+                        inner join courses co on co.id = c.course_id ";
                         $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
                         ?>
 
@@ -82,7 +83,7 @@ include '../config.php';
                                             <tr>
                                                 <td class="text-center"><?php echo $i++?></td>
                                                 <td class="text-center"><?= $row['ex_title']; ?></td>
-                                                <td class="text-center"><?= $row['course']; ?></td>
+                                                <td class="text-center"><?= $row['class']; ?></td>
                                                 <td class="text-center"><?= $row['ex_description']; ?></td>
                                                 <td class="project-actions text-center">
                                                     <a class="btn btn-primary btn-sm" href="viewRanking.php?id=<?php echo $row['ex_id']; ?>">

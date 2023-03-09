@@ -16,5 +16,5 @@
 	mysqli_query($conn,"UPDATE exam_question set eqt_id='$id', exam_question='$question', exam_ch1='$choice_A',
 	exam_ch2='$choice_B', exam_ch3='$choice_C', exam_ch4='$choice_D', exam_answer='$correctAnswer', q_type='$type', exam_id='$examId'  WHERE eqt_id='$id'");
 	header("location:manage-exam.php?id=$examId");
-
+	exit(0);
 ?>

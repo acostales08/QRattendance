@@ -37,11 +37,47 @@ include '../config.php';
         <!-- Content Header (Page header) -->
             <div class="content-header">
               <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
+                <div class="row lg-2">
+                    <div class="col-sm-3">
                     <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Attendance Report</b></h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
+                      <form role="form" action="class_att_re.php" method="POST">                 
+                                      <div class="form-group col-md-12">
+                                          <select name="class" id="" class="custom-select select2" onchange="this.form.submit()" required>
+                                              <option value="" disabled selected hidden>please select class per subject</option>
+                                              <?php
+                                              $class = mysqli_query($conn, "SELECT cs.*,concat(co.course,' ',c.level,'-',c.section) as `class`,s.subject,f.name as fname FROM class_subject cs inner join `class` c on c.id = cs.class_id 
+                                              inner join courses co on co.id = c.course_id 
+                                              inner join faculty f on f.id = cs.faculty_id 
+                                              inner join subjects s on s.id = cs.subject_id ".($_SESSION['id'] ? " 
+                                              where f.id = {$_SESSION['id']} ":"")." order by concat(co.course,' ',c.level,'-',c.section) asc");
+                                              while($row=mysqli_fetch_assoc($class)):
+                                              ?>
+                                              <option value="<?php echo $row['id'] ?>" data-cid="<?php echo $row['id'] ?>" <?php echo isset($class_subject_id) && $class_subject_id == $row['id'] ? 'selected' : (isset($class_subject_id) && $class_subject_id == $row['id'] ? 'selected' :'') ?>><?php echo $row['class'].' '.$row['subject'] ?></option>
+                                              <?php endwhile; ?>
+                                          </select>
+                                      </div>    
+                                      
+                      </form>
+                      </div>
+                    <div class="col-sm-2">
+                      <?php
+                      if(isset($_POST['submit'])){
+                        $selectdate = $_POST['date'] ;
+                      }
+                      ?>
+                      <form action="" method="POST">
+                       <div class="input-group mb-3">
+                        <input type="date" name="date" value="<?php echo date('Y-m-d')?>" class="form-control">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary" name="submit" type="submit">Go</button>
+                        </div>
+                      </div>
+                      </form>
+
+                    </div><!-- /.col -->
+                    <div class="col-sm-3">
                       <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">WELCOME</li>
                         <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
@@ -55,11 +91,11 @@ include '../config.php';
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                        
-                        <a href="#select" class="btn btn-md btn-outline-primary edit_class_subject" data-toggle="modal" class="btn btn-primary"> Select</a>
 
-                    <?php $classID = $_GET["id"];?>
-                       <a href="print.php?id=<?php echo $classID?>" target="_blank"><button type="button" class="btn btn-md btn-outline-success edit_class_subject" > <i class="ti-printer btn-icon-prepend"> </i>Print</button></a>
+                    <?php $class_subject = $_GET["id"];
+                    date_default_timezone_set('Asia/Manila');
+                           $date = $selectdate ?? date('Y-m-d');?>
+                      <a href="print.php?class_subject=<?php echo $class_subject ?> & date=<?php echo $date?>" target="_blank"><button type="button" class="btn btn-md btn-outline-success edit_class_subject" > <i class="ti-printer btn-icon-prepend"> </i>Print</button></a>
                   </div>
                 <div>
 
@@ -70,9 +106,35 @@ include '../config.php';
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card card-outline card-primary">
+                <?php include '../message.php';?>
+              <?php
+
+                    $class1 = mysqli_query($conn, "SELECT cs.*,concat(c.level,'-',c.section) as `class`,s.subject, co.course, f.name as fname FROM class_subject cs inner join `class` c on c.id = cs.class_id 
+                    inner join courses co on co.id = c.course_id 
+                    inner join faculty f on f.id = cs.faculty_id 
+                    inner join subjects s on s.id = cs.subject_id 
+                    where cs.id = '$class_subject'");
+                    $erow = mysqli_fetch_assoc($class1);
+                    $course = $erow['course'] ?? "--";
+                    $class = $erow['class'] ?? "--";
+                    $subject = $erow['subject'] ?? "--";
+                    ?>
                 <div class="card-body table-responsive p-0">
-                  <p class="card-title text-md-center text-xl-left"></p>
                   <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <div class="card-header">
+                    <table width="100%">
+                      <tr>
+                        <td width="50%">
+                          <p>Course: <b style="color: #007bff;"> <?php echo $course; ?></b></p>
+                          <p>Subject: <b style="color: #007bff;"> <?php echo $subject; ?></b></p>
+                        </td>
+                        <td width="50%">
+                          <p>Class: <b style="color: #007bff;"> <?php echo $class; ?></b></p>
+                          <p>Date of Class: <b style="color: #007bff;"> <?php echo $date; ?></b></p>
+                        </td>
+                      </tr>
+                    </table>
+                    </div>
                       <table id="example1" class="table table-striped">
                           <thead style="font-size:15px">
                               <tr>
@@ -88,17 +150,17 @@ include '../config.php';
                         <?php
                          
                            $i = 1;
-                           $sql ="SELECT * FROM attendance inner JOIN student_info ON attendance.StudentID=student_info.StudentID WHERE class_id = $classID order by attendance.LOGDATE desc";
+                           $sql ="SELECT * FROM attendance inner JOIN student_info ON attendance.StudentID=student_info.StudentID WHERE class_subject_id = '$class_subject' AND LOGDATE= '$date' order by attendance.LOGDATE desc";
                            $query = $conn->query($sql);
                            while ($row = $query->fetch_assoc()){
                         ?>
                             <tr>
-                                <td><?php echo $i++ ?></td>
+                                <td><?php echo $i++; echo $date ?></td>
                                 <td><?php echo $row['FullName'];?></td>
                                 <td><?php echo $row['StudentID'];?></td>
                                 <td><?php echo $row['TIMEIN'];?></td>
                                 <td><?php echo $row['LOGDATE'];?></td>
-                                <td style="color: blue;"><?php echo $row['STATUS'];?></td>
+                                <td style="color: #007bff;"><?php echo $row['STATUS'];?></td>
                             </tr>
                         <?php
 
@@ -114,7 +176,6 @@ include '../config.php';
         </div>
   <?php
   include '../footer.php';
-  include 'classatt.php';
     include '../scripts.php';
     exit();
     ?>

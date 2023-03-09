@@ -1,20 +1,17 @@
 <?php
 	include'../config.php';
 
-	$course_id = $_POST['course_id'];
+	$class_id = $_POST['class_id'];
 	$time = $_POST['examLimit'];
 	$examQuestDipLimit = $_POST['examQuestDipLimit'];
 	$title = $_POST['title'];
 	$discription = $_POST['discription'];
 	
-	mysqli_query($conn,"insert into exam (cou_id, ex_time_limit, ex_questlimit_display, ex_title, ex_description) values ('$course_id', '$time', '$examQuestDipLimit', '$title', '$discription')");
+	$query=mysqli_query($conn,"INSERT INTO exam (class_id, ex_time_limit, ex_questlimit_display, ex_title, ex_description) VALUES ('$class_id', '$time', '$examQuestDipLimit', '$title', '$discription')");
 	header('location:exam.php');
+	exit(0);
 
-	if (mysqli_query($conn, $sql)) {
-		echo "Employee has been created.";
-	  } else {
-		return "Error: " . $sql . "<br>" . $conn->error;
-	  }
+
   
 	  // Close the connection after using it
 	  $conn->close();

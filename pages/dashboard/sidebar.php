@@ -14,7 +14,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="class.php?id=0" class="nav-link <?= $page == 'class.php' ? 'active': ' ' ?>">
+              <a href="class.php" class="nav-link <?= $page == 'class.php' ? 'active': ' ' ?>">
                 <i class="nav-icon fa fa-users"></i>
                 <p>
                   Class

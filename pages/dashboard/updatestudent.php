@@ -12,6 +12,6 @@ include '../config.php';
 	$view = $_POST['view'];
 	
 	mysqli_query($conn,"update student_info set sid='$id', StudentID='$sid', FullName='$fName', Gender='$gender', Email='$email', class_id='$class', is_active='$is_active', view='$view' where sid='$id'");
-	header("location:class.php?id=$class");
-
+	header("location:manage-access.php?id=$class");
+	exit(0);
 ?>

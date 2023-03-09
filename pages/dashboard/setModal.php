@@ -81,7 +81,7 @@
                                             required>
                                 </div> 
                                 <div class="form-group col-md-12 text-left">
-                                    <label for="is_active">is_active </label>
+                                    <label for="is_active">Allow student access </label>
                                     <select class="form-control"
                                             name="is_active" 
                                             required>
@@ -91,7 +91,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12 text-left">
-                                    <label for="view">view exam </label>
+                                    <label for="view">Allow student view exam result </label>
                                     <select class="form-control"
                                             name="view" 
                                             required>

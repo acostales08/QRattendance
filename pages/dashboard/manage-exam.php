@@ -7,9 +7,9 @@ include '../navbar.php';
 require '../config.php';
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
-<!-- <div class="preloader flex-column justify-content-center align-items-center">
+<div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="../../dist/img/logo.png" alt="RCILogo" height="100" width="80">
-</div> -->
+</div>
 <div class="container-scroller">
 <div class="container-scroller">
   <aside class="main-sidebar sidebar-dark-primary elevation-4">

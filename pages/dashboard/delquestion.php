@@ -8,4 +8,6 @@ if(isset($_POST['exId']))
 
     $query = "DELETE FROM exam_question WHERE eqt_id='$student_id' ";
     $query_run = mysqli_query($conn, $query);}
-    header("location:manage-exam.php?id=$id");?>
+    header("location:manage-exam.php?id=$id");
+    exit(0);
+    ?>

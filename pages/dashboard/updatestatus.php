@@ -11,13 +11,15 @@
             <?php
             $stats = mysqli_query($conn, "SELECT * FROM attendance where ID ='".$row['ID']."'");
             $row=mysqli_fetch_array($stats);
+            $class_subject = $row['class_subject_id'];
             ?>
             <div class="modal-body">
                 <form role="form" action="editstatus.php?id=<?php echo $row['ID']?>" method="POST"> 
                         <div class="card-body">
                             <div class="form-group">
+                                <input type="hidden" name="class" value="<?php echo $class_subject?>">
                             <div class="form-group col-md-12 text-left">
-                                    <label for="status">Status </label>
+                                    <label for="status">Status</label>
                                     <select class="form-control"
                                             name="status" 
                                             required>

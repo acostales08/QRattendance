@@ -49,11 +49,31 @@ include '../config.php';
         <div class="content-header">
           <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                 <h2 style="color: purple;"><b><?php date_default_timezone_set('Asia/Manila'); echo date("l") ." ". date('Y-m-d') ?></b></br></h2>
                 <h2 style="color: purple;"><b><?php echo date("g:i A") ?></b></br></h2>
                 </div>
                 <div class="col-sm-6">
+                      <form role="form" action="dash.php" method="POST">                 
+                                      <div class="form-group col-md-12">
+                                          <select name="class" id="" class="custom-select select2" onchange="this.form.submit()" required>
+                                              <option value="" disabled selected hidden>please select class per subject</option>
+                                              <?php
+                                              $class = mysqli_query($conn, "SELECT cs.*,concat(co.course,' ',c.level,'-',c.section) as `class`,s.subject,f.name as fname FROM class_subject cs inner join `class` c on c.id = cs.class_id 
+                                              inner join courses co on co.id = c.course_id 
+                                              inner join faculty f on f.id = cs.faculty_id 
+                                              inner join subjects s on s.id = cs.subject_id ".($_SESSION['id'] ? " 
+                                              where f.id = {$_SESSION['id']} ":"")." order by concat(co.course,' ',c.level,'-',c.section) asc");
+                                              while($row=mysqli_fetch_assoc($class)):
+                                              ?>
+                                              <option value="<?php echo $row['id'] ?>" data-cid="<?php echo $row['id'] ?>" <?php echo isset($class_subject_id) && $class_subject_id == $row['id'] ? 'selected' : (isset($class_subject_id) && $class_subject_id == $row['id'] ? 'selected' :'') ?>><?php echo $row['class'].' '.$row['subject'] ?></option>
+                                              <?php endwhile; ?>
+                                          </select>
+                                      </div>    
+                                      
+                      </form>
+                    </div>
+                <div class="col-sm-3">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">WELCOME</li>
                     <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
@@ -91,8 +111,10 @@ include '../config.php';
             <div class="small-box bg-info">
               <div class="inner">
                 <?php
+                $class_subject = $_GET['id'] ?? 0;
+                date_default_timezone_set('Asia/Manila');
                 $date = date('Y-m-d');
-                $query= "SELECT LOGDATE,count(*) as present from attendance where STATUS = 'PRESENT'AND LOGDATE ='$date'  ";
+                $query= "SELECT count(DISTINCT StudentID) as present from attendance where STATUS = 'PRESENT'AND LOGDATE ='$date' AND class_subject_id='$class_subject'";
                 $query_run = mysqli_query($conn, $query);
                 
                 if($query_run->num_rows>0)
@@ -119,8 +141,7 @@ include '../config.php';
             <div class="small-box bg-success">
               <div class="inner">
                 <?php
-                $date = date('Y-m-d');
-                $query= "SELECT LOGDATE,count(*) as tardy from attendance where STATUS = 'LATE'AND LOGDATE ='$date'  ";
+ $query= "SELECT count(DISTINCT StudentID) as tardy from attendance where STATUS = 'LATE'AND LOGDATE ='$date' AND class_subject_id='$class_subject' ";
                 $query_run = mysqli_query($conn, $query);
                 
                 if($query_run->num_rows>0)
@@ -147,15 +168,23 @@ include '../config.php';
             <div class="small-box bg-warning">
               <div class="inner">
               <?php
-                $query= "SELECT StudentID fROM student_info ORDER BY StudentID";
+                $query= "SELECT count(DISTINCT StudentID) as total from student_class_subject where StudentID AND class_subject_id='$class_subject' ";
                 $query_run = mysqli_query($conn, $query);
                 
-                $rows = mysqli_num_rows($query_run);
-                $student =$rows;
-                 $total = $student - $present -$tardy;;
-                 echo '<h3>'. $total.'</h3>';
+                if($query_run->num_rows>0)
+                  {
+                      while($row = mysqli_fetch_assoc($query_run))
+                      {    
+                          $totals = $row['total'];
+                          $student =$totals;
+                         $total = $student - $present -$tardy;
+                          echo '<h3>' . $total.'</h3>' ;
+                          
+                      }
+                  }else{
+                  echo '<h3>no record found</h3>';
+                }
                 
-                 
                 ?>
                 <p>Total absent</p>
               </div>

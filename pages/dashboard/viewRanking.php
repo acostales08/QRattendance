@@ -38,10 +38,10 @@ include '../config.php';
       <div class="content-header">
               <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                     <h1 class="m-0"><span style = "color: purple; font-size: 40px; width: 2rem;"><b>|</span>Ranking by exam</b></h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">WELCOME</li>
                         <li class="breadcrumb-item active"><?php echo $_SESSION['faculty']?></li>
@@ -67,7 +67,7 @@ include '../config.php';
                 {
                    $selEx = mysqli_query($conn, "SELECT * FROM exam WHERE ex_id='$exam_id' ");
                    $result = mysqli_fetch_assoc($selEx);
-                   $exam_course = $result['cou_id'];
+                   $exam_course = $result['class_id'];
                    
 
                    $selExmne = mysqli_query($conn,"SELECT s.*, concat(co.course,' ',c.level,'-',c.section) as `class` FROM student_info s 
@@ -83,7 +83,6 @@ include '../config.php';
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card card-outline card-primary">
                   <div class="card-body table-responsive p-0">
-                    <p class="card-title text-md-center text-xl-left">Exam</p>
                     <div class=" flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
 
                         <table id="example1" class="table table-striped" >

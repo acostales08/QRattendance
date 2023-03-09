@@ -5,7 +5,7 @@ if(isset($_POST['submit'])){
     $view = $_POST['view'];
 
     $query =mysqli_query($conn, "UPDATE student_info SET is_active='$status', view='$view' WHERE class_id='$classID'");
-    header("location:class.php?id=$class");
+    header("location:manage-access.php?id=$class");
     exit();
 }
 
@@ -25,17 +25,13 @@ if(isset($_POST['submit'])){
                 <?php
 
                 include '../config.php';
-                $class = mysqli_query($conn, "SELECT * FROM class_subject order by id");
+                $class = mysqli_query($conn, "SELECT * FROM student_info order by class_id");
                 $row = mysqli_fetch_assoc($class);
                 
                 ?>
                 <form role="form" action="" method="POST"> 
                         <div class="card-body">
-                                <input type="hidden" 
-                                        class="form-control" 
-                                        name="class_id" 
-                                        value = "<?php echo $row['id'] ?>"
-                                        required>                               
+                            
                                 <div class="form-group col-md-12">
                                     <label for="" class="control-label">Class</label>
                                     <select name="class" id="" class="custom-select select2" required>
