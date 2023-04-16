@@ -105,7 +105,7 @@ include '../../pages/config.php';
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" data-toggle="modal" href="#del<?php echo $row['sid']; ?>">
+                          <a class="btn btn-info btn-sm" data-toggle="modal" href="#del<?php echo $row['sid']; ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
